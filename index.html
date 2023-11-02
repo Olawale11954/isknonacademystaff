@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTERCONTINENTAL COLLEGE, KANO</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+        <img src="images/Inter_Logo_Final-02-removebg-preview.png" alt="Intercontinental">
+        <h1>INTERCONTINENTAL COLLEGE, KANO</h1>
+        
+    </div>
+   <div class="report">
+    <p>INTERCONTINENTAL NON ACADEMY STAFF BIO DATA</p>
+   </div>
+    </header>
+
+    
+    <div class="contact-col">
+         
+        <form name="submit-to-google-sheet">
+  
+           <div class="input-group">
+              <label>Full Name</label>
+              <input type="text" name="Name" placeholder="staff name" required>
+              
+           </div>
+  
+            <div class="input-group"> 
+              <label>Category</label>
+              <input type="text" name="Category" placeholder="Enter Category" required>
+              
+           </div>
+  
+            <div class="input-group"> 
+              <label>Phone Number</label>
+              <input type="tel" name="Phone" placeholder="Enter phone number" required>
+              
+           </div>
+  
+            <div class="input-group"> 
+              <label>Next of Kin Phone</label>
+              <input type="tel" name="Next Of Kin Phone" placeholder="Enter phone number" required>
+              
+           </div>
+            <div class="input-group"> 
+              <label>Address</label>
+               <textarea name="Address" rows="3" placeholder="Enter Valid Address"></textarea>
+           </div>
+  
+          
+  
+           <button type="submit">Submit</button>
+           <span id="msg"></span>
+        </form>
+     </div>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwMpiadJ1POPNiKqzn3alKlUSWNY7lvIK6ztmUzam8CpJTgSgAMMVdSRVTERnTHeA/exec'
+  const form = document.forms['submit-to-google-sheet']
+  const msg = document.getElementById("msg")
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => {
+         msg.innerHTML = "Information Save Successfully"
+         setTimeout(function(){
+            msg.innerHTML = ""  
+         },6000)
+         form.reset()
+      })
+      .catch(error => console.error('Error!', error.message))
+  })
+</script>
+</body>
+</html>
